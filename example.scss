@@ -1,0 +1,115 @@
+@import "partials/variables";
+
+
+@mixin messages($bgcolor){
+    border: 1px solid $lighter_grey;
+    padding: $padding_general;
+    color: $white;
+    background-color: $bgcolor;
+}
+@mixin boxshadow($color){
+    -webkit-box-shadow: 10px 10px 15px -4px $color;
+    -moz-box-shadow: 10px 10px 15px -4px $color;
+    box-shadow: 10px 10px 15px -4px $color;
+}
+
+body {
+    font: 100% "Space Mono", monospace;
+    color: $basic_grey;
+    margin: 0;
+    padding: $padding-general;
+    background-color: $white;
+    overflow-x: hidden;
+}
+
+main {
+    padding: $padding-main;
+}
+
+
+article {
+    display: flex;
+    flex-wrap: wrap;
+    section {
+        flex-grow: 1;
+        flex-basis: 45%;
+        border: 1px $lighter_grey solid;
+        @include boxshadow($lighter_grey);
+        padding: $padding_general;
+        margin: 16px;
+        clear: both;
+        overflow: auto;
+        box-sizing: border-box;
+        #selling-points {
+            flex-grow: 2;
+            flex-basis: 100%;
+        }
+    }
+    code {
+        background: $black;
+        border: 1px solid $basic_grey;
+        color: $lighter_grey;
+        page-break-inside: avoid;
+        font-family: monospace;
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 1.6em;
+        max-width: 100%;
+        overflow: auto;
+        padding: 1em 1.5em;
+        display: block;
+        word-wrap: break-word;
+        .before {
+            float: left;
+            width: 40%;
+        }
+        .after {
+            float: right;
+            width: 40%;
+        }
+    }
+}
+
+
+h1, h2, h3 {
+    color: $titles;
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+    font-size: 1.5em;
+    padding: $padding_general*2;
+    margin-bottom: 0px;
+}
+
+.messages {
+    padding: $padding_general;
+    .success{
+        @include messages($succes_color);
+    }
+    .error{
+        @include messages($error_color);
+        &:hover{
+            background-color:$succes_color;
+        }
+    }
+    .warning{
+        @include messages($warning_color)
+    }
+}
+
+.advantages{
+    li.adv-item{
+        @for $i from 1 through 6 {
+            &:nth-child(#{$i}) {
+                background-color: lighten($lighter_grey, $i * 5%);
+            }
+          }
+    }
+    
+}
+
